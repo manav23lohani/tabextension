@@ -1,29 +1,40 @@
-const saveBtn = document.getElementById("saveButton");
-const loadBtn = document.getElementById("loadButton");
-const inputName = document.getElementById("inputName");
+window.onload = () => {
+  const saveBtn = document.getElementById("saveButton");
+  const deleteBtn = document.getElementById("deleteButton")
+  const addList = document.getElementById("list")
 
-saveBtn.addEventListener("click", () => {
-  const name = inputName.value;
-  if (name) {
+
+  let storageItems = JSON.parse(localStorage.getItem('tabs'));
+  storageItems.forEach((item, i) => {
+    addList.innerHTML += `<li class="links">${item}</li>`;
+  });
+
+  let links = document.getElementsByClassName("links")
+
+  for (let i = 0; i < links.length; i++) {
+    links[i].addEventListener("click", (e) => {
+      window.open(e.target.innerHTML, "_blank");
+    })
+
+  }
+
+  saveBtn.addEventListener("click", () => {
+
     chrome.tabs.query({}, function (tabs) {
       var tabGroup = [];
-
       tabs.forEach(function (tab) {
-        // console.log(tab.url);
         tabGroup.push(tab.url);
       });
-      localStorage.setItem(name, JSON.stringify(tabGroup));
-    });
-  }
-});
+      localStorage.setItem('tabs', JSON.stringify(tabGroup));
 
-loadBtn.addEventListener("click", () => {
-  const name = inputName.value;
-  if (name) {
-    const tabs = JSON.parse(localStorage.getItem(name));
-    // console.log(tabs);
-    tabs.forEach((url)=>{
-      window.open(url, "_blank");
-    })
-  }
-});
+    });
+
+  });
+
+
+  deleteBtn.addEventListener("click", () => {
+    localStorage.removeItem('tabs');
+    addList.innerHTML = "";
+  })
+
+}
