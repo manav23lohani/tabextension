@@ -1,29 +1,17 @@
-const saveBtn = document.getElementById("saveButton");
-const loadBtn = document.getElementById("loadButton");
-const inputName = document.getElementById("inputName");
-
-saveBtn.addEventListener("click", () => {
-  const name = inputName.value;
-  if (name) {
-    chrome.tabs.query({}, function (tabs) {
-      var tabGroup = [];
-
-      tabs.forEach(function (tab) {
-        // console.log(tab.url);
-        tabGroup.push(tab.url);
-      });
-      localStorage.setItem(name, JSON.stringify(tabGroup));
+function saveTabs() {
+  const key = document.getElementById('key').value;
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    const activeTab = tabs[0];
+    chrome.runtime.sendMessage({ action: 'saveTabs', key: key }, function(response) {
+      console.log('Tabs saved successfully!');
     });
-  }
-});
+  });
+}
 
-loadBtn.addEventListener("click", () => {
-  const name = inputName.value;
-  if (name) {
-    const tabs = JSON.parse(localStorage.getItem(name));
-    // console.log(tabs);
-    tabs.forEach((url)=>{
-      window.open(url, "_blank");
-    })
-  }
-});
+function openTabs() {
+  const key = document.getElementById('key').value;
+  chrome.runtime.sendMessage({ action: 'openTabs', key: key });
+}
+
+document.getElementById('saveButton').addEventListener('click', saveTabs);
+document.getElementById('openButton').addEventListener('click', openTabs);
