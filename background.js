@@ -26,9 +26,9 @@ function openTabsFromStorage(key) {
     const storedTabs = result[key];
     if (storedTabs) {
       storedTabs.forEach((url, index) => {
-        setTimeout(() => {
+        
           chrome.tabs.create({ url });
-        }, index * 1000); 
+        
       });
     }
   });
