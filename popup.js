@@ -19,11 +19,6 @@ function deleteTabGroup(key) {
 function displaySavedTabs(savedTabs) {
   const savedTabKeys = Object.keys(savedTabs);
 
-  if (savedTabKeys.length === 0) {
-    console.log('No saved tabs found.');
-    return;
-  }
-
   const tabList = document.getElementById('tabList');
 
   // Clear previous tab list
@@ -34,18 +29,22 @@ function displaySavedTabs(savedTabs) {
   // Create list items for each saved tab
   savedTabKeys.forEach(key => {
     const tabItem = document.createElement('li');
-    tabItem.textContent = key;
-
+    
+    const groupName = document.createElement('div');
+    groupName.textContent = key;
+    groupName.className = 'grpname';
+    tabItem.append(groupName);
+    
     // Create delete button for each tab group
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
-    deleteButton.addEventListener('click', function(event) {
+    const deleteicon = document.createElement('div');
+    deleteicon.className = 'fa fa-close cross';
+    deleteicon.addEventListener('click', function(event) {
       event.stopPropagation();
       deleteTabGroup(key);
     });
 
-    tabItem.appendChild(deleteButton);
-    tabItem.addEventListener('click', function() {
+    tabItem.appendChild(deleteicon);
+    groupName.addEventListener('click', function() {
       openTabsFromStorage(key);
     });
     tabList.appendChild(tabItem);

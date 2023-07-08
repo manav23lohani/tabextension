@@ -4,13 +4,15 @@
 <html>
 <head>
   <title>Tab Manager</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div>
-    <label for="key">Tab Group Key:</label>
-    <input type="text" id="key">
-    <button id="saveButton">Save Tabs</button>
+    <input placeholder="Tabs Group Key.." type="text" id="key">
+    <button class="bn1" id="saveButton">Save Tabs</button>
   </div>
+  <h3>Collections saved:</h3>
   <ul id="tabList"></ul>
   <script src="popup.js"></script>
 </body>
