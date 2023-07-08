@@ -1,0 +1,50 @@
+button{
+    padding: 5px 14px;
+    border-radius: 10%;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  .bn1 {
+    width: fit-content;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    background-image: linear-gradient(
+        to right,
+        #667eea,
+        #764ba2,
+        #6b8dd6,
+        #8e37d7
+      );
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn1:hover {
+    background-position: 100% 0;
+    transition: all .4s ease-in-out;
+  }
+  #tabList{
+    list-style-type: none;
+    margin: 2px 5px;
+    padding: 0;
+    margin: 10px 5px;
+  }
+  #tabList li{
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .grpname, .cross{
+    cursor: pointer;
+  }
+  #key{
+    margin: 5px 0px 10px 0px;
+  }
