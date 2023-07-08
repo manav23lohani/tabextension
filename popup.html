@@ -1,19 +1,17 @@
-<html>
-  <head>
-    <title>Tab Group Saver</title>
-  </head>
-  <body>
+<!-- popup.html -->
 
-    <div class="container">
-        <h2>Tabs collection</h2>
-        <br>
-        <input type="text" id="inputName" placeholder="Enter name...">
-        <br>
-        <button id="saveButton">Save tabs collection <i class="fa-solid fa-plus"></i></button>
-        <button id="loadButton">Load saved tabs <i class="fa-solid fa-ban"></i></button>
-        
-      <ul class="groups-list"></ul>
-    </div>
-    <script src="popup.js"></script>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tab Manager</title>
+</head>
+<body>
+  <div>
+    <label for="key">Tab Group Key:</label>
+    <input type="text" id="key">
+    <button id="saveButton">Save Tabs</button>
+  </div>
+  <ul id="tabList"></ul>
+  <script src="popup.js"></script>
+</body>
 </html>
